@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  overflow-x: hidden;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+
+nav ul li {
+  margin: 0 3rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+section {
+  padding: 50px;
+  text-align: center;
+}
+
+.image-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.moving-image {
+  position: absolute;
+  max-width: 200px;
+  animation: moveImage 10s infinite ease-in-out alternate;
+}
+
+/* Animation for moving images */
+@keyframes moveImage {
+  from {
+    transform: translateX(0) translateY(0);
+  }
+  to {
+    transform: translateX(50vw) translateY(50vh);
+  }
+}
+
+.port {
+  text-align: center;
+  background-color: black;
+  color: #fff;
+  height: 50vh;
+}
+#welcome{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Typing animation for h1 */
+.typing {
+  display: inline-block;
+  overflow: hidden; /* Ensures the text will be clipped at the end of the animation */
+  white-space: nowrap; /* Prevents text from wrapping */
+  border-right: 3px solid; /* Creates the cursor effect */
+  font-size: 2.5rem;
+  width: 0; /* Start with no width */
+  animation: typing 4s steps(30, end) infinite, blink-caret 0.75s infinite;
+}
+
+/* Typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 40%; /* Expand to full width */
+  }
+}
+
+/* Blinking cursor effect */
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
+}
+
+span {
+  font-family: "Allura", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.5rem;
+  color: wheat;
+}
+
+.skills {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+  color: white;
+  background-image: url('grid.png');
+}
+
+.skill-icon {
+  width: 50px;
+  height: 50px;
+  position: absolute; /* Fixed positioning within the container */
+  transition: transform 0.1s ease-out; /* Smooth movement */
+}
+
+/* Manually set the fixed positions for each image */
+.skill-icon:nth-child(1) { top: 50%; left: 50%; }
+.skill-icon:nth-child(2) { top: 40%; left: 30%; }
+.skill-icon:nth-child(3) { top: 60%; left: 20%; }
+.skill-icon:nth-child(4) { top: 30%; left: 70%; }
+.skill-icon:nth-child(5) { top: 50%; left: 80%; }
+.skill-icon:nth-child(6) { top: 70%; left: 50%; }
+.skill-icon:nth-child(7) { top: 70%; left: 90%; }
+
+#myskills {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 45%;
+  top: 50%;
+}
+
+/* Projects section */
+#projects {
+  padding: 20px;
+  text-align: center;
+  position: relative; /* Ensure positioning context for the scrolling */
+}
+
+/* Wrapper to contain the scrolling content */
+.scroll-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 60vh; /* Adjust height as needed */
+}
+
+/* Container for scrolling images */
+.projects-container {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 200%; /* Ensure the container is wide enough */
+  height: 100%;
+}
+
+/* Image styling */
+.projects-container img {
+  width: 20vw; /* Adjust size as needed */
+  height: 40vh;
+  margin-right: 20px; /* Space between images */
+}
+
+/* Animation for scrolling effect */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
