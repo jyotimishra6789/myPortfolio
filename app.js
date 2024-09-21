@@ -50,3 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
          
   });
 });
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 5,
+    spaceBetween: 5,
+    loop: true,
+    freeMode: true,
+    speed: 2000,
+    autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+    },
+});
