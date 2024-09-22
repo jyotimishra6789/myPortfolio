@@ -238,8 +238,8 @@ body {
 
 /* Navigation for Mobile */
 nav ul {
-  flex-direction: column; /* Stack menu items vertically */
-  text-align: center;
+  flex-direction: row; /* Stack menu items vertically */
+  
 }
 
 nav ul li {
