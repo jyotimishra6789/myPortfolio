@@ -254,11 +254,10 @@ section {
 
 .skill-category {
     padding: 2rem;
-    transition: transform 0.3s ease;
+    transition: border-color 0.3s ease;
 }
 
 .skill-category:hover {
-    transform: translateY(-5px);
     border-color: rgba(255, 255, 255, 0.15);
 }
 

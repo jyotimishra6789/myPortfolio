@@ -116,6 +116,36 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: "power2.out"
     });
 
+    // 3D Parallax Hover for Skills Cards (Interactive)
+    const skillCards = document.querySelectorAll('.skill-category');
+    skillCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            const rotateX = -(y / rect.height) * 25; 
+            const rotateY = (x / rect.width) * 25;
+            
+            gsap.to(card, {
+                rotationX: rotateX,
+                rotationY: rotateY,
+                transformPerspective: 1000,
+                ease: "power2.out",
+                duration: 0.5
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                rotationX: 0,
+                rotationY: 0,
+                ease: "power3.out",
+                duration: 0.8
+            });
+        });
+    });
+
     // Contact Panel
     gsap.from(".contact-section", {
         scrollTrigger: {
