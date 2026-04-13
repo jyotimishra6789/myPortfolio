@@ -1,63 +1,130 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Mouse movement effect for skill icons
-  document.addEventListener('mousemove', function(e) {
-      const skillIcons = document.querySelectorAll('.skill-icon');
-      const mouseX = (e.clientX / window.innerWidth - 0.5) * 30;  // Move up to 15px left/right
-      const mouseY = (e.clientY / window.innerHeight - 0.5) * 30; // Move up to 15px up/down
+document.addEventListener('DOMContentLoaded', () => {
 
-      skillIcons.forEach(icon => {
-          icon.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-      });
-  });
+    // 1. Swiper Initialization
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        freeMode: false,
+        speed: 1500,
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 3, spaceBetween: 30 },
+            1024: { slidesPerView: 4, spaceBetween: 40 },
+        }
+    });
 
-  // Scrolling effect for projects container
-  const container = document.querySelector('.projects-container');
-  const wrapper = document.querySelector('.scroll-wrapper');
+    // 2. GSAP Animations with ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
 
-  const clone = container.cloneNode(true);
-  container.appendChild(clone);
+    // Hero Neon Paths Setup 
+    const neonPaths = document.querySelectorAll(".neon-path");
+    
+    neonPaths.forEach((path) => {
+        let length = path.getTotalLength();
+        path.style.strokeDasharray = length;
+        path.style.strokeDashoffset = length; // start hidden
 
-  function scroll() {
-      container.style.animation = 'scroll-left 20s linear infinite';
-  }
-  scroll();
+        // Animate them drawing in
+        gsap.to(path, {
+            strokeDashoffset: 0,
+            duration: 3.5,
+            ease: "power2.inOut",
+            delay: 0.5
+        });
 
-  // GSAP setup
+        // Add a subtle breathing glow effect once drawn
+        gsap.to(path, {
+            opacity: 0.7,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: 4
+        });
+    });
 
+    // Typography fade in
+    gsap.from(".hero-svg text", {
+        y: 40,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.2,
+        delay: 1.5,
+        ease: "power3.out"
+    });
 
-  gsap.from("#abt", {
-      opacity: 0,
-      y: 20,
-      delay: 1,
-      duration: 2,
-      scrollTrigger: "#abt"
-         
-  });
+    // Circular Badge pop in
+    gsap.from(".circular-badge", {
+        scale: 0,
+        opacity: 0,
+        duration: 1.5,
+        delay: 2.5,
+        ease: "elastic.out(1, 0.5)"
+    });
 
-  gsap.from("#me", {
-      opacity: 0,
-      delay: 2,
-      duration: 2,
-      scrollTrigger:"#me" 
-         
-  });
+    // Fade in Nav
+    gsap.from("nav .logo, nav ul li", {
+        y: -20,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.out"
+    });
 
-  gsap.from("#wit", {
-      scale: 2,
-      delay: 4,
-      duration: 0.5,
-      scrollTrigger: "#wit"
-         
-  });
-});
-var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 5,
-    spaceBetween: 5,
-    loop: true,
-    freeMode: true,
-    speed: 2000,
-    autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-    },
+    // Section Titles
+    gsap.utils.toArray('.section-title').forEach(title => {
+        gsap.from(title, {
+            scrollTrigger: {
+                trigger: title,
+                start: "top 85%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out"
+        });
+    });
+
+    // About Panel
+    gsap.from(".about-section", {
+        scrollTrigger: {
+            trigger: ".about-section",
+            start: "top 80%"
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out"
+    });
+
+    // Skills Grid Cards
+    gsap.from(".skill-category", {
+        scrollTrigger: {
+            trigger: ".skills-grid",
+            start: "top 80%"
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power2.out"
+    });
+
+    // Contact Panel
+    gsap.from(".contact-section", {
+        scrollTrigger: {
+            trigger: ".contact-section",
+            start: "top 85%"
+        },
+        scale: 0.95,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out(1.7)"
+    });
 });

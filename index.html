@@ -31,11 +31,51 @@
 
     <main>
         <section id="welcome" class="hero">
-            <div class="hero-content">
-                <p class="greeting">Hi, I am</p>
-                <h1 class="hero-title">Jyoti <span class="accent">Mishra</span></h1>
-                <div class="typing-container">
-                    <h2 class="typing"></h2>
+            <div class="hero-container">
+                <!-- SVG for scale-locked typography and neon paths -->
+                <svg class="hero-svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <!-- Glow filter -->
+                        <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1" />
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur2" />
+                            <feMerge>
+                                <feMergeNode in="blur2" />
+                                <feMergeNode in="blur1" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Behind the text -->
+                    <!-- Loops starting from left -->
+                    <path class="neon-path" id="n1" d="M -50,150 C 100,-50 250,550 420,380" fill="none" stroke="#FF7500" stroke-width="7" stroke-linecap="round" filter="url(#neon-glow)" />
+
+                    <!-- Base Typography -->
+                    <text x="600" y="360" text-anchor="middle" font-size="220" font-family="'Outfit', sans-serif" font-weight="900" fill="#ffffff" letter-spacing="-5px">Portfolio</text>
+
+                    <!-- Subtext -->
+                    <text x="600" y="470" text-anchor="middle" font-size="32" font-family="'Inter', sans-serif" font-weight="600" fill="#a0aab2" letter-spacing="14px">JYOTI MISHRA</text>
+
+                    <!-- In front of the text -->
+                    <path class="neon-path" id="n2" d="M 420,380 C 480,250 520,100 650,150 C 780,200 700,450 850,350" fill="none" stroke="#FF7500" stroke-width="7" stroke-linecap="round" filter="url(#neon-glow)" />
+
+                    <!-- Extra loop in front scaling right -->
+                    <path class="neon-path" id="n3" d="M 850,350 C 950,280 1100,500 1300,50" fill="none" stroke="#FF7500" stroke-width="7" stroke-linecap="round" filter="url(#neon-glow)" />
+                    
+                    <!-- Loop bridging over across the center to create an intertwined knot -->
+                    <path class="neon-path" id="n4" d="M 280,450 C 100,450 -50,200 150,250 C 350,300 750,-50 950,200" fill="none" stroke="#FF7500" stroke-width="7" stroke-linecap="round" filter="url(#neon-glow)" />
+                </svg>
+
+                <div class="circular-badge">
+                    <svg viewBox="0 0 200 200">
+                        <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" fill="none"/>
+                        <text>
+                            <textPath href="#circlePath" fill="#FF7500" font-size="18" letter-spacing="4px" font-weight="700" font-family="'Outfit', sans-serif">
+                                GRAPHIC DESIGN - WEB DEVELOPER -
+                            </textPath>
+                        </text>
+                    </svg>
                 </div>
             </div>
         </section>
